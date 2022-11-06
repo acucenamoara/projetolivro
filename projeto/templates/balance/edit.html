@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<!-- Container fluid  -->			
+<div class="container-fluid">				
+    <!-- RECENT SALES -->				
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-md-flex mb-3 justify-content-between">
+                    <h3 class="box-title mb-0">Editar Saldo</h3>
+                    {% if balance %}
+                    <div class="ms-auto">
+                        <a  class="btn btn-primary shadow-none row border-top" href="{% url 'balance.delete' balance.pk %}">Deletar</a>
+
+                    </div>
+                    {% endif %}
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    {{form | crispy}}
+                    <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>				
+</div>			
+<!-- End Container fluid  -->
+{% endblock %}

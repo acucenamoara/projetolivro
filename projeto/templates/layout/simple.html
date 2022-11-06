@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html dir="ltr" lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <meta name="keywords"
+		content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"> -->
+	<meta name="description"
+		content="Gerenciamento financeiro com criação de metas e desespesas.">
+	<meta name="robots" content="noindex,nofollow">
+	<title>{% block title %} {% endblock %}Verity Finance</title>
+	<!-- Icons -->
+	<link href="{% static 'assets/css/icons/material-design-iconic-font/css/materialdesignicons.min.css' %}" rel="stylesheet">
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/plugins/images/favicon.png' %}">
+	<!-- Custom CSS -->
+	<link href="{% static 'assets/plugins/bower_components/chartist/dist/chartist.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="{% static 'assets/css/style.min.css' %}" rel="stylesheet">
+	{% block styles %}
+	{% endblock %}
+</head>
+
+<body>
+	
+	<!-- Preloader - style you can find in spinners.css -->
+	
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	
+	<!-- Main wrapper - style you can find in pages.scss -->
+	
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+		data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+		
+		<!-- Topbar header - style you can find in pages.scss -->
+		
+		<header class="topbar" data-navbarbg="skin5">
+			<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+				<div class="navbar-header">
+					
+					<!-- Logo -->
+					
+					<a class="navbar-brand d-flex justify-content-center" href="{% url 'goal.index' %}">
+						<!-- Logo icon -->
+						<b class="logo-icon">
+							<!-- Dark Logo icon -->
+							<img src="{% static 'assets/img/logo-white.png' %}" alt="homepage" height="55px"/>
+						</b>
+						<!--End Logo icon -->
+
+					</a>
+					
+					<!-- End Logo -->
+					
+					
+					<!-- toggle and nav items -->
+					
+					<a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+						href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+				</div>
+				
+				<!-- End Logo -->
+				
+				<div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+					
+					<!-- Right side toggle and nav items -->
+					
+					<ul class="navbar-nav ms-auto d-flex align-items-center">
+						
+					</ul>
+				</div>
+			</nav>
+		</header>
+		
+		<!-- End Topbar header -->
+
+		
+		<!-- Page wrapper  -->
+		
+			
+        {% block content %}
+
+        {% endblock %}		
+            
+        
+        <!-- footer -->			
+        <footer class="footer text-center w-100" style="position: absolute; bottom: 0;"> 
+            <p style="text-align: center;">2022 © Verity Finance</p>
+        </footer>			
+        <!-- End footer -->
+			
+		<!-- End Page wrapper  -->
+		
+	</div>
+	<!-- End Wrapper -->
+	
+	
+	<!-- All Jquery -->	
+	<script src="{% static 'assets/plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="{% static 'assets/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'assets/js/app-style-switcher.js' %}"></script>
+	<script src="{% static 'assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+	<!--Wave Effects -->
+	<script src="{% static 'assets/js/waves.js' %}"></script>
+	<!--Menu sidebar -->
+	<script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+	<!--Custom JavaScript -->
+	<script src="{% static 'assets/js/custom.js' %}"></script>
+	<!--This page JavaScript -->
+	<!--chartis chart-->
+	<script src="{% static 'assets/plugins/bower_components/chartist/dist/chartist.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+	<script src="{% static 'assets/js/pages/dashboards/dashboard1.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

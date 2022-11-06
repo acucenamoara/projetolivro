@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<!-- Container fluid  -->			
+<div class="container-fluid">				
+    <!-- RECENT SALES -->				
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-flex mb-3 justify-content-between">
+                    <h3 class="box-title mb-0">Despesas</h3>
+                    <div class="ms-auto">
+                        <a  class="btn btn-primary shadow-none row border-top" href="{% url 'expense.create' %}">Novo</a>
+
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Descrição</th>
+                                <th class="border-top-0">Custo</th>
+                                <th class="border-top-0">Tipo</th>
+                                <th class="border-top-0">Método de pagamento</th>
+                                <th class="border-top-0">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for expense in expenses %}
+                                <tr>
+                                    <td>{{ expense.pk }}</td>
+                                    <td>{{ expense.description }}</td>
+                                    <td>R$ {{ expense.cost | intcomma }}</td>
+                                    <td>{{ expense.type }}</td>
+                                    <td>{{ expense.payment_method }}</td>
+                                    <td><a href="{% url 'expense.edit' expense.pk %}">Editar</a> | <a href="{% url 'expense.delete' expense.pk %}">Deletar</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>				
+</div>			
+<!-- End Container fluid  -->
+{% endblock %}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block styles %}
+    <link href="{% static 'assets/css/datepicker.min.css' %}" rel="stylesheet" type="text/css" />
+    <style>
+        button.btn.btn-outline-secondary {
+            height: 100%;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<!-- Container fluid  -->			
+<div class="container-fluid">				
+    <!-- RECENT SALES -->				
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <h3>Novo Objetivo</h3>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                
+                    <button type="submit" class="btn btn-primary">Salvar</button>                
+                </form>
+            </div>
+        </div>
+    </div>				
+</div>			
+<!-- End Container fluid  -->
+{% endblock %}
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="{% static 'assets/js/datepicker.min.js' %}" type="text/javascript"></script>
+
+<script>
+    $('#id_date').datepicker({
+        uiLibrary: 'bootstrap4',
+        format: 'dd/mm/yyyy'
+
+    });
+</script>
+{% endblock %}

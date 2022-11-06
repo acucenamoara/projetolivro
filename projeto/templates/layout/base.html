@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html dir="ltr" lang="pt-br">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- <meta name="keywords"
+		content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Ample lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Ample admin lite dashboard bootstrap 5 dashboard template"> -->
+	<meta name="description"
+		content="Gerenciamento financeiro com criação de metas e desespesas.">
+	<meta name="robots" content="noindex,nofollow">
+	<title>{% block title %} {% endblock %}Verity Finance</title>
+	<!-- Icons -->
+	<link href="{% static 'assets/css/icons/material-design-iconic-font/css/materialdesignicons.min.css' %}" rel="stylesheet">
+
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/plugins/images/favicon.png' %}">
+	<!-- Custom CSS -->
+	<link href="{% static 'assets/plugins/bower_components/chartist/dist/chartist.min.css' %}" rel="stylesheet">
+	<link href="{% static 'assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css' %}" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="{% static 'assets/css/style.min.css' %}" rel="stylesheet">
+
+	{% block styles %}
+	{% endblock %}
+</head>
+
+<body>
+	
+	<!-- Preloader - style you can find in spinners.css -->
+	
+	<div class="preloader">
+		<div class="lds-ripple">
+			<div class="lds-pos"></div>
+			<div class="lds-pos"></div>
+		</div>
+	</div>
+	
+	<!-- Main wrapper - style you can find in pages.scss -->
+	
+	<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+		data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+		
+		<!-- Topbar header - style you can find in pages.scss -->
+		
+		<header class="topbar" data-navbarbg="skin5">
+			<nav class="navbar top-navbar navbar-expand-md navbar-dark">
+				<div class="navbar-header" data-logobg="skin6">
+					
+					<!-- Logo -->
+					
+					<a class="navbar-brand d-flex justify-content-center" href="{% url 'goal.index' %}">
+						<!-- Logo icon -->
+						<span class="logo-icon">
+							<!-- Dark Logo icon -->
+							<img src="{% static 'assets/img/logo-black.png' %}" alt="homepage" height="55px"/>
+						</span>
+						<!--End Logo icon -->
+
+					</a>
+					
+					<!-- End Logo -->
+					
+					
+					<!-- toggle and nav items -->
+					
+					<a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
+						href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+				</div>
+				
+				<!-- End Logo -->
+				
+				<div class="navbar-collapse collapse" data-navbarbg="skin5">
+
+					
+					<!-- Right side toggle and nav items -->
+					
+					<ul class="navbar-nav ms-auto d-flex align-items-center">
+						<li>
+							<a class="profile-pic" href="#">
+								<i class="fa fa-user me-1" aria-hidden="true"></i>
+								<span class="text-white font-medium">{{ user.name }}</span>
+							</a>
+							<a href="{% url 'auth.logout' %}">Sair</a>
+							<button class="btn btn-alert"></button>
+						</li>
+												
+					</ul>
+				</div>
+			</nav>
+		</header>
+		
+		<!-- End Topbar header -->
+		
+		
+		<!-- Left Sidebar - style you can find in sidebar.scss  -->
+		
+		<aside class="left-sidebar" data-sidebarbg="skin6">
+			<!-- Sidebar scroll-->
+			<div class="scroll-sidebar">
+				<!-- Sidebar navigation-->
+				<nav class="sidebar-nav">
+					<ul id="sidebarnav">
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'balance.index' %}"
+								aria-expanded="false">
+								<i class="ti-stats-up" aria-hidden="true"></i>
+								<span class="hide-menu">Saldos</span>
+							</a>
+						</li>
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'expense.index' %}"
+								aria-expanded="false">
+								<i class="ti-stats-down" aria-hidden="true"></i>
+								<span class="hide-menu">Despesas</span>
+							</a>
+						</li>
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'goal.index' %}"
+								aria-expanded="false">
+								<i class="fa fa-bullseye" aria-hidden="true"></i>
+								<span class="hide-menu">Objetivos</span>
+							</a>
+						</li>
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'bank.index' %}"
+								aria-expanded="false">
+								<i class="mdi mdi-bank" aria-hidden="true"></i>
+								<span class="hide-menu">Bancos</span>
+							</a>
+						</li>	
+						<li class="sidebar-item pt-2">
+							<a class="sidebar-link waves-effect waves-dark sidebar-link" href="{% url 'auth.config' request.user.id %}"
+								aria-expanded="false">
+								<i class="mdi mdi-account-settings-variant" aria-hidden="true"></i>
+								<span class="hide-menu">Configurações</span>
+							</a>
+						</li>	
+						<hr class="mt-2 d-md-none d-flex" style="line-height: 3px;"/>
+						<a href="{% url 'auth.logout' %}" class="sidebar-item d-md-none d-flex align-items-center justify-content-center">							
+							<span>Sair</span>
+						</a>			
+					</ul>
+
+				</nav>
+				<!-- End Sidebar navigation -->
+			</div>
+			<!-- End Sidebar scroll-->
+		</aside>
+		
+		<!-- End Left Sidebar - style you can find in sidebar.scss  -->
+		
+		
+		<!-- Page wrapper  -->
+		
+		<div class="page-wrapper">
+			
+			<!-- Bread crumb and right sidebar toggle -->
+			
+			<div class="page-breadcrumb bg-white">
+				<div class="row align-items-center">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Verity Finance</h4>
+					</div>					
+				</div>
+				<!-- /.col-lg-12 -->
+			</div>
+			
+			<!-- End Bread crumb and right sidebar toggle -->						
+			{% block content %}
+			
+			{% endblock %}			
+			
+			<!-- footer -->			
+			<footer class="footer text-center"> 2022 © Verity Finance
+			</footer>			
+			<!-- End footer -->
+			
+		</div>		
+		<!-- End Page wrapper  -->
+		
+	</div>
+	<!-- End Wrapper -->
+	
+	
+	<!-- All Jquery -->	
+	<script src="{% static 'assets/plugins/bower_components/jquery/dist/jquery.min.js' %}"></script>
+	<!-- Bootstrap tether Core JavaScript -->
+	<script src="{% static 'assets/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+	<script src="{% static 'assets/js/app-style-switcher.js' %}"></script>
+	<script src="{% static 'assets/plugins/bower_components/jquery-sparkline/jquery.sparkline.min.js' %}"></script>
+	<!--Wave Effects -->
+	<script src="{% static 'assets/js/waves.js' %}"></script>
+	<!--Menu sidebar -->
+	<script src="{% static 'assets/js/sidebarmenu.js' %}"></script>
+	<!--Custom JavaScript -->
+	<script src="{% static 'assets/js/custom.js' %}"></script>
+	<!--This page JavaScript -->
+	<!--chartis chart-->
+	<script src="{% static 'assets/plugins/bower_components/chartist/dist/chartist.min.js' %}"></script>
+	<script src="{% static 'assets/plugins/bower_components/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js' %}"></script>
+	<script src="{% static 'assets/js/pages/dashboards/dashboard1.js' %}"></script>
+	{% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

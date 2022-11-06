@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "layout/base.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+{% block content %}
+<!-- Container fluid  -->			
+<div class="container-fluid">				
+    <!-- RECENT SALES -->				
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="white-box">
+                <div class="d-flex mb-3 justify-content-between">
+                    <h3 class="box-title mb-0">Objetivos</h3>
+                    <div class="ms-auto">
+                        <a  class="btn btn-primary shadow-none row border-top" href="{% url 'goal.create' %}">Novo</a>
+
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap">
+                        <thead>
+                            <tr>
+                                <th class="border-top-0">#</th>
+                                <th class="border-top-0">Meta</th>
+                                <th class="border-top-0">Valor</th>
+                                <th class="border-top-0">Data</th>
+                                <th class="border-top-0">Rendimento</th>
+                                <th class="border-top-0">Valor economizado</th>
+                                <th class="border-top-0">Valor faltante</th>
+                                <th class="border-top-0">Dias restantes</th>
+                                <th class="border-top-0">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for goal in goals %}
+                                <tr>
+                                    <td>{{ goal.pk }}</td>
+                                    <td>{{ goal.goal }}</td>
+                                    <td>R$ {{ goal.value | intcomma }}</td>
+                                    <td>{{ goal.date | date:"d/m/Y" }}</td>
+                                    <td>{{ goal.income }}%</td>
+                                    <td>R$ {{ goal.saved_value | intcomma }}</td>
+                                    <td>R$ {{ goal.value | sub:goal.saved_value | intcomma }}</td>
+                                    <td>{{ goal.time_left }}</td>
+                                    <td><a href="{% url 'goal.edit' goal.pk %}">Editar</a> | <a href="{% url 'goal.delete' goal.pk %}">Deletar</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>				
+</div>			
+<!-- End Container fluid  -->
+{% endblock %}
